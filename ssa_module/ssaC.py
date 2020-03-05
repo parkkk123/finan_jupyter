@@ -78,7 +78,8 @@ class ssa(intelligence.sw):
                     Vibrc.append(W[i])
             Vibrc = np.array(Vibrc)
 
-            fitness = [(function(Nm[i]), i) for i in range(nm)]
+            # fitness = [(function(Nm[i]), i) for i in range(nm)]
+            fitness = [(fitness_at_it[nf+i], i) for i in range(nm)]
             fitness.sort()
             cent_male = fitness[ceil(nm/2)][0]
             
@@ -109,7 +110,8 @@ class ssa(intelligence.sw):
                                 Vibrb[i] * (Pbest - self.__agents[i]) + \
                                             gamma * (r2 - 0.5)
                 else:
-                    if cent_male > function(self.__agents[i]):
+                    # if cent_male > function(self.__agents[i]):
+                    if cent_male > fitness_at_it[i]:
                         m = i - nf - 1
                         k = Distf[m][1]
                         self.__agents[i] += alpha * Vibrf[m] * \
